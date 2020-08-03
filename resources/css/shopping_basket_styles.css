@@ -1,0 +1,27 @@
+.body-div {
+  align: center;
+}
+
+.basket-container {
+  background-color: #ffe3fe;
+  align: center;
+  margin-top: 30px;
+}
+
+.basket {
+  background-color: white;
+  border: 2px solid black;
+  margin-left: 15%;
+  margin-right: 15%;
+  overflow: scroll;
+}
+
+table {
+  border: 1px solid black;
+  margin-bottom: 15px;
+}
+
+.total-price {
+  font-size: 20px;
+
+}

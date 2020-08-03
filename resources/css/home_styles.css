@@ -1,0 +1,38 @@
+
+.card-img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Card Styles */
+
+.card {
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+  display: inline-block;
+  width: 27.5%;
+  height: 350px;
+  text-align: left;
+  background: #555;
+  border-bottom: 4px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  object-fit: contain;
+}
+.card:hover {
+  border-color: purple;
+}
+
+.genre-heading {
+   text-align: center;
+   text-decoration: underline;
+   color: #fff;
+}
+
+/* Aside Styles */
+
+.quote {
+  text-align: center;
+  padding-top: 40px;
+}
