@@ -140,7 +140,7 @@
               $queryCategory = $data_base->quote(htmlspecialchars($_POST["new_product_category"]));
               $queryImageName = $data_base->quote(htmlspecialchars(uploadImageAndReturnName($image, $_FILES["new_product_image"]["tmp_name"])));
 
-              $query = "INSERT INTO products (product_name, product_description, product_id, product_cost, product_stock, product_image_location, added_date, category)
+              $query = "INSERT INTO products (product_name, product_description, product_id, product_cost, product_stock, product_image_location, published_date, category)
               VALUES ($queryName, $queryDesc, $queryId, $queryCost, $queryStock, $queryImageName, $queryDate, $queryCategory)";
               try {
                 $data_base->exec($query);
