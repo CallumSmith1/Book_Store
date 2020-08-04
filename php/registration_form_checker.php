@@ -53,7 +53,7 @@
     setCookie("name", $username, 0, "/");
     setCookie("access", $accessLevel, 0, '/');
     setCookie("university_id", $university_id, 0, '/');
-    header("Location: ../index.php");
+    header("Location: ../Store.php");
   }
 
   ?>

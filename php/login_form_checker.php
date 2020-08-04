@@ -19,7 +19,7 @@
     $result = checkUserCreds($username, $password);
     foreach ($result as $row) {
       setCookies($row["name"], $row["access"], $username);
-      header("Location: ../index.php");
+      header("Location: ../Store.php");
   }
 
   function checkUserCreds($username, $password) {
