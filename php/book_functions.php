@@ -37,7 +37,7 @@ function printBookDetails() {
  <p><b>Description:</b></br>$productDescription</p>
  <p><b>Cost:</b></br>£$productCost</p>
  <p><b>In Stock:</b></br>$productStock</p>
- <p><b>Date Added To Store:</b></br>$addedDate</p>
+ <p><b>Publish Date:</b></br>$addedDate</p>
  <p><b>Category:</b></br>$category</p>
  ";
 
@@ -73,7 +73,7 @@ function setBookDetails() {
     $productCost = $row["product_cost"];
     $productStock = $row["product_stock"];
     $productImageLocation = $row["product_image_location"];
-    $addedDate = $row["added_date"];
+    $addedDate = $row["published_date"];
     $category = $row["category"];
   }
 }

@@ -26,6 +26,7 @@ function printUsersCart($university_id) {
       deleteAll($row["product_name"]);
       header("Location: ../Shopping_Basket.php");
     }
+    //Remove a book if the add will take it over the limit
     $stock = enoughProductStock($row["product_name"], $row["quantity"]);
     if($stock < $row["quantity"]) {
       removeOne($row["product_name"]);
@@ -83,7 +84,7 @@ function printUsersCart($university_id) {
 function addOne($name_to_add) {
   global $data_base;
   $query_name = $data_base->quote($name_to_add);
-  $query = "UPDATE cart SET quantity = quantity + 1 WHERE product_name=".$query_name. " AND university_id = ".$_COOKIE["university_id"];
+  $query = "UPDATE cart SET quantity = quantity + 1, cost = (cost / (quantity - 1)) * quantity WHERE product_name=".$query_name. " AND university_id = ".$_COOKIE["university_id"];
   //TODO: Update Price
   try {
     $data_base->exec($query);
@@ -99,7 +100,7 @@ function removeOne($name_to_remove) {
   //TODO: Update Price
   global $data_base;
   $query_name = $data_base->quote($name_to_remove);
-  $query = "UPDATE cart SET quantity = quantity - 1 WHERE product_name=".$query_name. " AND university_id = ".$_COOKIE["university_id"];
+  $query = "UPDATE cart SET quantity = quantity - 1, cost = (cost / (quantity + 1)) * quantity WHERE product_name=".$query_name. " AND university_id = ".$_COOKIE["university_id"];
   try {
     $data_base->exec($query);
   }
@@ -128,9 +129,15 @@ function placeOrder()  {
     //transfer from cart to orders
     $transferQuery = "INSERT INTO orders SELECT * FROM cart WHERE university_id = ".$_COOKIE["university_id"];
     $deleteQuery = "DELETE FROM cart WHERE university_id = ".$_COOKIE["university_id"];
+    //I probably shoud link the product id or something instead, but it's 1am
+      $stockUpdate ="UPDATE products
+INNER JOIN orders ON products.product_name = orders.product_name
+SET products.product_stock = (products.product_stock - orders.quantity)
+WHERE orders.product_name = products.product_name AND orders.university_id = ".$_COOKIE["university_id"];
     try {
       $data_base->exec($transferQuery);
       $data_base->exec($deleteQuery);
+      $data_base->exec($stockUpdate);
     }
     catch(Exception $e) {
       echo "<p>An error occurred while transfering orders</p>";
