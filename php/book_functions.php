@@ -58,6 +58,7 @@ function printBookDetails() {
  }
 }
 
+//sets the details of the global variables 
 function setBookDetails() {
   global $productName;
   global $productImageLocation;
@@ -78,6 +79,7 @@ function setBookDetails() {
   }
 }
 
+//returns the rows from a specified database
   function getFromDatabase ($table, $productName) {
     $data_base = new PDO("mysql:mysql:host=180210017.cs2410-web01pvm.aston.ac.uk;dbname=u_180210017_aston_book_store", "u-180210017", "Oa3tKeQFzVfxoBu");
       //Use a quote statement to prevent SQL Injection without Node.js
